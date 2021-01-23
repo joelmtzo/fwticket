@@ -9,6 +9,6 @@ import {HttpClient} from '@angular/common/http';
 export class EventTicketService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.apiUrl + 'cities/', http);
+    super(environment.apiUrl + 'eventTickets/', http);
   }
 }
