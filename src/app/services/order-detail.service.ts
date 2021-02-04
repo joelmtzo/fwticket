@@ -9,6 +9,6 @@ import {environment} from '../../environments/environment';
 export class OrderDetailService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.apiUrl + 'cities/', http);
+    super(environment.apiUrl + 'orderDetails/', http);
   }
 }

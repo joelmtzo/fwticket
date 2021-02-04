@@ -1,6 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
-    <a class="navbar-brand" href="#">fwticket</a>
+    <a class="navbar-brand" routerLink="/">fwticket</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,11 +8,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:true }"  routerLink="/">Home</a>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact:true }"
+             routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/cart">Carrito (0)</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/cart">Carrito ({{ getCartCount() }})</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/contact">Contacto</a>
@@ -27,7 +28,6 @@
 </div>
 
 <div class="container">
-
   <footer class="navbar-light bg-light p-3">
     <div class="row">
       <div class="col-md-4">

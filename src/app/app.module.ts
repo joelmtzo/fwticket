@@ -8,13 +8,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     EventDetailComponent,
-    ContactoComponent
+    ContactoComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

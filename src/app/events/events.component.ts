@@ -13,9 +13,10 @@ import {EventTicketService} from '../services/event-ticket.service';
 })
 export class EventsComponent implements OnInit {
 
-  events: any;
-  venues: any;
-  ticketTypes: any;
+  events: any = [];
+  venues: any = [];
+  ticketTypes: any = [];
+  subs: any = [];
 
 /*  form = new FormGroup({
     title: new FormControl('', []),
@@ -92,5 +93,6 @@ export class EventsComponent implements OnInit {
 
   saveTickets(formData) {
     this.eventTicketSvc.create(this.buildObject(formData)).subscribe();
+    this.onReset();
   }
 }

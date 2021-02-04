@@ -1,0 +1,49 @@
+<div class="py-4">
+
+  <ng-template #empty>
+    <h4 class="text-center py-5">Tu carrito esta vacío, agrega algunos boletos ;)</h4>
+  </ng-template>
+
+  <div class="d-flex flex-column" *ngIf="items.length; else empty">
+    <h4 class="text-center py-3">Carrito de Compras</h4>
+    <table class="table table-bordered table-sm table-hover text-center">
+      <thead>
+      <tr style="background-color: ghostwhite">
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>
+            <strong>{{ item.title }}</strong>
+            <br>
+            {{ item.ticketType }}
+          </td>
+          <td>{{ item.price | currency }}</td>
+          <td>
+            {{ item.quantity }}
+            <button (click)="cartSvc.delete(item)" class="btn btn-outline-danger btn-sm">X</button>
+          </td>
+          <td>{{ item.price * item.quantity | currency }}</td>
+        </tr>
+        <tr>
+          <td style="background-color: ghostwhite"></td>
+          <td style="background-color: ghostwhite"></td>
+          <td style="font-weight: bold">Total</td>
+          <td>{{ cartSvc.total | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      (click)="makeOrder()"
+      class="btn btn-success align-self-end">Finalizar compra</button>
+  </div>
+
+  <a routerLink="/">
+    <p class="text-center py-4">Regresar al catálogo de eventos</p>
+  </a>
+</div>
