@@ -24,8 +24,9 @@
           </td>
           <td>{{ item.price | currency }}</td>
           <td>
-            {{ item.quantity }}
-            <button (click)="cartSvc.delete(item)" class="btn btn-outline-danger btn-sm">X</button>
+            <button (click)="updateQuantity(item, -1)" class="btn btn-primary btn-sm">-</button>
+            <span class="mx-3">{{ item.quantity }}</span>
+            <button (click)="updateQuantity(item, 1)" class="btn btn-primary btn-sm">+</button>
           </td>
           <td>{{ item.price * item.quantity | currency }}</td>
         </tr>

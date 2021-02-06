@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {EventsService} from '../services/events.service';
 import {ActivatedRoute} from '@angular/router';
+import {EventsService} from '../services/events.service';
 import {EventTicketService} from '../services/event-ticket.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ShoppingCartService} from '../services/shopping-cart.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-event-detail',
@@ -25,7 +26,7 @@ export class EventDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => this.eventId = params['id']);
 
-    this.eventSvc.getById(this.eventId)
+    this.eventSvc.getById(this.eventId, '?projection=eventProjection')
       .subscribe(response => this.event = response);
 
     this.eventTicketsSvc.findAllByEventId(this.eventId)
@@ -34,6 +35,7 @@ export class EventDetailComponent implements OnInit {
 
   add2cart(id: number, price: number, title: string, ticketType: string): void {
     this.cartSvc.add({id, price, title, ticketType});
+    Swal.fire('Item agregado', 'Se agregó a tu carrito de compras', 'success');
   }
 
 }

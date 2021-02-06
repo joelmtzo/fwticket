@@ -14,9 +14,9 @@ export class DataService {
   constructor(@Inject('API_BASE_URL') private url: string, private http: HttpClient) {
   }
 
-  getById(id) {
+  getById(id, projection = '') {
     return this.http
-      .get(this.url + id)
+      .get(this.url + id + projection)
       .pipe(
         map(response => response),
         catchError(this.handleError)

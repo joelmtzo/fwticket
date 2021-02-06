@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {OrderService} from '../services/order.service';
 import {OrderDetailService} from '../services/order-detail.service';
-import {log} from 'util';
-import {DatePipe} from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,6 +22,10 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.cartSvc.getItems()
       .subscribe(items => this.items = items);
+  }
+
+  updateQuantity(item, qty) {
+    this.cartSvc.updateQty(item, qty);
   }
 
   makeOrder(): void {

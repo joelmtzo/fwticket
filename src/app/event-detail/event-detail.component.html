@@ -3,13 +3,20 @@
   <div class="row">
     <div class="col-md-6">
       <h3 class="my-3" style="color: lightseagreen">{{ event.title }}</h3>
-      <p>Información del evento</p>
+      <p><strong>Información del evento</strong></p>
       <p>{{ event.description }}</p>
+
+      <ul class="list-unstyled">
+        <li><strong>Lugar del evento:</strong> {{ event.venueId.name }}</li>
+        <li><strong>Fecha:</strong> {{ event.date | date: 'dd/MM/yyyy' }}</li>
+      </ul>
     </div>
     <div class="col-md-6">
-      <p *ngIf="!eventTickets.length">No hay boletos para este evento</p>
+      <ng-template #sinboletos>
+        <h3 class="text-center py-3">No hay boletos para este evento</h3>
+      </ng-template>
 
-      <div *ngIf="eventTickets.length">
+      <div *ngIf="eventTickets.length; else sinboletos">
         <h3 class="my-3" style="color: steelblue">Boletos disponibles</h3>
         <table
           class="table table-sm table-hover table-bordered text-center">
@@ -24,7 +31,8 @@
             <td>
               <button
                 (click)="add2cart(ticket._links.self.href, ticket.price, event.title, ticket.ticketTypeId.name)"
-                class="btn btn-success btn-sm">Comprar</button>
+                class="btn btn-success btn-sm">Comprar
+              </button>
             </td>
           </tr>
         </table>
