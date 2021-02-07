@@ -4,6 +4,7 @@ import {EventsComponent} from './events/events.component';
 import {ContactoComponent} from './contacto/contacto.component';
 import {EventDetailComponent} from './event-detail/event-detail.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
+import {LoginComponent} from "./components/login/login.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: "cart", component: ShoppingCartComponent
+  },
+  {
+    path: "login", component: LoginComponent
   },
   {
     path: "contact", component: ContactoComponent

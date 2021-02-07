@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     EventsComponent,
     EventDetailComponent,
     ContactoComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
