@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {EventsService} from '../services/events.service';
-import {EventTicketService} from '../services/event-ticket.service';
-import {ShoppingCartService} from '../services/shopping-cart.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import Swal from 'sweetalert2';
+import {EventsService} from '../../services/events.service';
+import {EventTicketService} from '../../services/event-ticket.service';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -35,7 +33,7 @@ export class EventDetailComponent implements OnInit {
 
   add2cart(id: number, price: number, title: string, ticketType: string): void {
     this.cartSvc.add({id, price, title, ticketType});
-    Swal.fire('Item agregado', 'Se agregó a tu carrito de compras', 'success');
+    // Swal.fire('Item agregado', 'Se agregó a tu carrito de compras', 'success');
   }
 
 }

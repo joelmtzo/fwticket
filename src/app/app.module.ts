@@ -1,15 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
-import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {EventsComponent} from './components/events/events.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import { EventDetailComponent } from './event-detail/event-detail.component';
-import { ContactoComponent } from './contacto/contacto.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { LoginComponent } from './components/login/login.component';
+import {EventDetailComponent} from './components/event-detail/event-detail.component';
+import {ContactoComponent} from './components/contacto/contacto.component';
+import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.component';
+import {LoginComponent} from './components/login/login.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {environment} from '../environments/environment';
+import {TokenAuthInterceptor} from './interceptors/token-auth.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +22,31 @@ import { LoginComponent } from './components/login/login.component';
     EventDetailComponent,
     ContactoComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        allowedDomains: [environment.apiUrl]
+      },
+    }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenAuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -13,10 +13,25 @@
              routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/cart">Carrito ({{ getCartCount() }})</a>
+          <a class="nav-link"
+             routerLinkActive="active" routerLink="/cart">Carrito ({{ getCartCount() }})</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a>
+          <a class="nav-link"
+             *ngIf="!authSvc.isLoggedIn()"
+             routerLinkActive="active"
+             routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             *ngIf="authSvc.isLoggedIn()"
+             routerLink="/profile"
+             routerLinkActive="active">Mi Cuenta</a>
+        <li class="nav-item">
+          <a class="nav-link"
+             *ngIf="authSvc.isLoggedIn()"
+             routerLinkActive="active"
+             (click)="logout()">Logout</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/contact">Contacto</a>

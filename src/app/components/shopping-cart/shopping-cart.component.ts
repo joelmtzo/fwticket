@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ShoppingCartService} from '../services/shopping-cart.service';
-import {OrderService} from '../services/order.service';
-import {OrderDetailService} from '../services/order-detail.service';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+import {OrderService} from '../../services/order.service';
+import {OrderDetailService} from '../../services/order-detail.service';
 import Swal from 'sweetalert2';
+import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,6 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   items = [];
 
   constructor(
+    private router: Router,
     private orderSvc: OrderService,
     private orderDetailSvc: OrderDetailService,
     private cartSvc: ShoppingCartService) {
@@ -29,12 +32,17 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   makeOrder(): void {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      this.router.navigate(['login']);
+    }
+
     const order = {
       date: new Date(),
       total: this.cartSvc.total,
       notes: '',
       status: 1,
-      customerId: 'https://localhost:8080/customers/1'
+      customerId: environment.apiUrl + '/customers/' + customerId
     };
 
     this.orderSvc.create(order).subscribe(response => {
@@ -50,7 +58,16 @@ export class ShoppingCartComponent implements OnInit {
         };
 
         this.orderDetailSvc.create(detail).subscribe(srvResponse => {
-          srvResponse.status === 201 ? console.log('Listo') : console.log('Naríz');
+          if (srvResponse.status === 201) {
+            Swal.fire('Pedido Recibido', 'Recibirás un email de confirmación de tu pedido', 'success').then(result => {
+              if (result.dismiss || result.isConfirmed) {
+                this.router.navigate(['']);
+              }
+            });
+            this.cartSvc.empty();
+          } else {
+            Swal.fire('Ups, algo salió mal', 'Tu petición no pudo ser procesada, intenta de nuevo.', 'info');
+          }
         });
       });
 

@@ -7,7 +7,7 @@
       <p>{{ event.description }}</p>
 
       <ul class="list-unstyled">
-        <li><strong>Lugar del evento:</strong> {{ event.venueId.name }}</li>
+        <li><strong>Lugar:</strong> {{ event.venueId?.name }}</li>
         <li><strong>Fecha:</strong> {{ event.date | date: 'dd/MM/yyyy' }}</li>
       </ul>
     </div>
@@ -30,7 +30,10 @@
             <td>{{ ticket.price | currency }}</td>
             <td>
               <button
-                (click)="add2cart(ticket._links.self.href, ticket.price, event.title, ticket.ticketTypeId.name)"
+                (click)="add2cart(ticket._links.self.href,
+                                  ticket.price,
+                                  event.title,
+                                  ticket.ticketTypeId.name)"
                 class="btn btn-success btn-sm">Comprar
               </button>
             </td>

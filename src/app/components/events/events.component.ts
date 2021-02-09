@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {EventsService} from '../services/events.service';
+import {EventsService} from '../../services/events.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {VenueService} from '../services/venue.service';
+import {VenueService} from '../../services/venue.service';
 import {Router} from '@angular/router';
-import {TicketTypeService} from '../services/ticket-type.service';
-import {EventTicketService} from '../services/event-ticket.service';
+import {TicketTypeService} from '../../services/ticket-type.service';
+import {EventTicketService} from '../../services/event-ticket.service';
 
 @Component({
   selector: 'app-events',
