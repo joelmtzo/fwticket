@@ -18,18 +18,18 @@
         </li>
         <li class="nav-item">
           <a class="nav-link"
-             *ngIf="!authSvc.isLoggedIn()"
+             *ngIf="!isLoggedIn()"
              routerLinkActive="active"
              routerLink="/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link"
-             *ngIf="authSvc.isLoggedIn()"
+             *ngIf="isLoggedIn()"
              routerLink="/profile"
              routerLinkActive="active">Mi Cuenta</a>
         <li class="nav-item">
           <a class="nav-link"
-             *ngIf="authSvc.isLoggedIn()"
+             *ngIf="isLoggedIn()"
              routerLinkActive="active"
              (click)="logout()">Logout</a>
         </li>

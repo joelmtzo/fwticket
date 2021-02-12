@@ -1,0 +1,30 @@
+<ng-template #sinpedidos>
+  <p class="py-3 text-center">No tienes pedidos aún, acá se mostrará tu historial de compras ;)</p>
+</ng-template>
+
+<div class="py-3" *ngIf="orders; else sinpedidos">
+  <h4>Mis Pedidos</h4>
+  <table class="table table-bordered text-center table-sm">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Fecha</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ order.total | currency }}</td>
+      <td>
+        <button
+          (click)="getOrderDetail(order)"
+          class="btn btn-outline-success btn-sm">Ver detalle
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

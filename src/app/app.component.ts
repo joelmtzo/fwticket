@@ -21,4 +21,8 @@ export class AppComponent {
   logout(): void {
     this.authSvc.logout();
   }
+
+  isLoggedIn(): boolean {
+    return this.authSvc.isLoggedIn();
+  }
 }

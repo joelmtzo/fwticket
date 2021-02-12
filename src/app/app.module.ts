@@ -14,6 +14,8 @@ import {JwtModule} from '@auth0/angular-jwt';
 import {environment} from '../environments/environment';
 import {TokenAuthInterceptor} from './interceptors/token-auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     ContactoComponent,
     ShoppingCartComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderDetailComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

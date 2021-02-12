@@ -1,0 +1,25 @@
+<div class="py-4">
+  <a routerLink="/profile">
+    <p class="py-2"><strong>Regresar</strong></p>
+  </a>
+  <table class="table table-bordered table-sm text-center">
+    <thead>
+    <tr>
+      <th>Cantidad</th>
+      <th>Evento</th>
+      <th>Sección</th>
+      <th>Costo</th>
+      <th>Subtotal</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let detail of orderDetail">
+      <td>{{ detail.quantity }}</td>
+      <td>{{ detail.id._embedded.eventTicketsId.eventId.title }}</td>
+      <td>{{ detail.id._embedded.eventTicketsId.ticketTypeId.name }}</td>
+      <td>{{ detail.price | currency }}</td>
+      <td>{{ detail.price * detail.quantity | currency }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

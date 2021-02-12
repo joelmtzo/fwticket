@@ -6,6 +6,8 @@ import {EventDetailComponent} from './components/event-detail/event-detail.compo
 import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.component';
 import {LoginComponent} from './components/login/login.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {OrderDetailComponent} from './components/order-detail/order-detail.component';
+import {OrdersComponent} from './components/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,14 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'profile', component: ProfileComponent
+    path: 'profile', component: ProfileComponent, children: [
+      {
+        path: '', component: OrdersComponent
+      },
+      {
+        path: 'order/:id', component: OrderDetailComponent
+      }
+    ]
   },
   {
     path: 'contact', component: ContactoComponent
